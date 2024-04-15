@@ -16,7 +16,7 @@
     --primary: 241, 39%, 50%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 55, 98%, 66%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -33,6 +33,10 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --primary-dark: 232, 41%, 27%;
+    --primary-mid: 241, 54%, 67%;
+    --primary-light: 240, 100%, 96%;
   }
 
   .dark {
