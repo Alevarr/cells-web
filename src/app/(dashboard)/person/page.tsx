@@ -1,5 +1,7 @@
 import ClientPersonForm from "@/components/forms/client-person-form";
 import PersonBackgroundLeft from "@/components/icons/person-background-left";
+import PersonBackgroundMobileLeft from "@/components/icons/person-background-mobile-left";
+import PersonBackgroundMobileRight from "@/components/icons/person-background-mobile-right";
 import PersonBackgroundRight from "@/components/icons/person-background-right";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
@@ -31,7 +33,8 @@ export default function page() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-row justify-between w-full">
-              <PersonBackgroundLeft className="relative" />
+              <PersonBackgroundLeft className="hidden sm:block" />
+              <PersonBackgroundMobileLeft className="sm:hidden" />
               <Avatar className="w-32 h-32 sm:w-64 sm:h-64 shadow-avatar">
                 <AvatarImage
                   src="https://github.com/shadcn.png"
@@ -39,7 +42,8 @@ export default function page() {
                 />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              <PersonBackgroundRight className="relative" />
+              <PersonBackgroundRight className="hidden sm:block" />
+              <PersonBackgroundMobileRight className="sm:hidden" />
             </div>
             <RadioGroup defaultValue="person" className="flex flex-col gap-6">
               <div className="flex items-center space-x-2">
