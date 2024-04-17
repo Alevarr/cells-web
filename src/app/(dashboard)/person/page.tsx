@@ -1,3 +1,4 @@
+import ClientPersonForm from "@/components/forms/client-person-form";
 import PersonBackgroundLeft from "@/components/icons/person-background-left";
 import PersonBackgroundRight from "@/components/icons/person-background-right";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -10,18 +11,18 @@ export default function page() {
     <Tabs defaultValue="client" className="">
       <TabsList className="flex flex-row w-full h-auto justify-between bg-transparent text-primary mb-12 gap-6">
         <TabsTrigger
-          className="grow p-1 bg-gradient-to-r from-primary-light via-primary-mid to-primary-mid max-w-[492px] rounded-[15px]"
+          className="grow p-1 bg-gradient-to-r from-primary-light via-primary-mid to-primary-mid max-w-[492px]"
           value="client"
         >
-          <div className="py-5 px-3 sm:px-6 bg-white w-full rounded-[15px] text-sm sm:text-lg">
+          <div className="py-5 px-3 sm:px-6 bg-white w-full rounded-common text-sm sm:text-lg">
             Заказчик
           </div>
         </TabsTrigger>
         <TabsTrigger
-          className="grow p-1 bg-gradient-to-l from-primary-light via-primary-mid to-primary-mid max-w-[492px] rounded-[15px]"
+          className="grow p-1 bg-gradient-to-l from-primary-light via-primary-mid to-primary-mid max-w-[492px]"
           value="freelancer"
         >
-          <div className="py-5 px-3 sm:px-6 bg-white w-full rounded-[15px] test-sm sm:text-lg">
+          <div className="py-5 px-3 sm:px-6 bg-white w-full rounded-common test-sm sm:text-lg">
             Исполнитель
           </div>
         </TabsTrigger>
@@ -55,11 +56,7 @@ export default function page() {
               </div>
             </RadioGroup>
           </div>
-          <div className="pb-[3px] bg-gradient-to-r from-transparent via-primary to-transparent">
-            <h2 className="text-primary-dark bg-white pb-2 text-center text-lg">
-              Основная информация
-            </h2>
-          </div>
+          <ClientPersonForm />
         </div>
       </TabsContent>
       <TabsContent value="freelancer"></TabsContent>
