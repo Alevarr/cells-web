@@ -6,16 +6,25 @@ import { useState } from "react";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   showInputLength?: boolean;
+  containerClassName?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { className, type, showInputLength, onChange, maxLength, ...props },
+    {
+      className,
+      containerClassName,
+      type,
+      showInputLength,
+      onChange,
+      maxLength,
+      ...props
+    },
     ref
   ) => {
     const [count, setCount] = useState(0);
     return (
-      <div className="relative">
+      <div className={cn("relative", containerClassName)}>
         <input
           type={type}
           className={cn(

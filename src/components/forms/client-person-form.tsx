@@ -2,6 +2,7 @@
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,6 +23,10 @@ import { z } from "zod";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { InputMask } from "@react-input/mask";
+import BottomGradient from "../bottom-gradient";
+import { Textarea } from "../ui/textarea";
+import { Check, Trash } from "lucide-react";
+import { Badge } from "../ui/badge";
 
 const formSchema = z.object({
   nickname: z.string().min(1).max(20),
@@ -49,6 +54,7 @@ const formSchema = z.object({
   site: z.string().optional(),
   businessTrips: z.boolean(),
   barter: z.boolean(),
+  description: z.string().max(500),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -73,14 +79,10 @@ export default function ClientPersonForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
+        className="flex flex-col gap-6 items-center"
       >
-        <div className="pb-[3px] bg-gradient-to-r from-transparent via-primary to-transparent">
-          <h2 className="text-primary-dark bg-white pb-2 text-center text-lg">
-            Основная информация
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+        <BottomGradient>Основная информация</BottomGradient>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end w-full max-w-screen-lg">
           <FormField
             control={form.control}
             name="nickname"
@@ -415,6 +417,79 @@ export default function ClientPersonForm() {
               </FormItem>
             )}
           />
+        </div>
+        <BottomGradient>Инфо</BottomGradient>
+        <div className="w-full max-w-screen-lg flex flex-col gap-3">
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Описание</FormLabel>
+                <FormControl>
+                  <Textarea
+                    required
+                    showInputLength
+                    placeholder="Обязательно опишите ваши ценности и цели, условия, на которых вам интересно сотрудничество."
+                    disabled={isLoading}
+                    {...field}
+                    maxLength={500}
+                    className="min-h-40"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormItem>
+            <FormLabel>Видеовизитка</FormLabel>
+            <div className="flex">
+              <Input
+                required
+                placeholder="https:/vk.com/"
+                className="rounded-r-none"
+                containerClassName="grow"
+              />
+              <Button variant="outline" className="h-auto rounded-l-none">
+                <Check />
+              </Button>
+            </div>
+          </FormItem>
+          <FormItem className="space-y-4">
+            <div>
+              <FormLabel>Теговые слова </FormLabel>
+              <FormDescription className="text-xs text-muted-foreground">
+                (максимальное количество тегов - 10)
+              </FormDescription>
+            </div>
+
+            <div className="flex flex-row gap-2">
+              <Badge variant="ghost" className="flex gap-2 text-sm">
+                <span>#Корпоративы</span>
+                <Button variant="ghost" size="icon">
+                  <Trash className="w-5 h-5" />
+                </Button>
+              </Badge>
+              <Badge variant="ghost" className="flex gap-2 text-sm">
+                <span>#Корпоративы</span>
+                <Button variant="ghost" size="icon">
+                  <Trash className="w-5 h-5" />
+                </Button>
+              </Badge>
+            </div>
+            <div className="flex">
+              <Input
+                required
+                placeholder="https:/vk.com/"
+                className="rounded-r-none"
+                containerClassName="grow"
+              />
+              <Button variant="outline" className="h-auto rounded-l-none">
+                <Check />
+              </Button>
+            </div>
+          </FormItem>
         </div>
 
         <Button disabled={isLoading} className="ml-auto w-full" type="submit">
