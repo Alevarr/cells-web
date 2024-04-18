@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
@@ -27,6 +27,7 @@ import BottomGradient from "../bottom-gradient";
 import { Textarea } from "../ui/textarea";
 import { Check, Trash } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { Separator } from "../ui/separator";
 
 const formSchema = z.object({
   nickname: z.string().min(1).max(20),
@@ -75,6 +76,8 @@ export default function ClientPersonForm() {
     // });
   };
 
+  const [occupationOther, setOccupationOther] = useState(false);
+
   return (
     <Form {...form}>
       <form
@@ -110,21 +113,52 @@ export default function ClientPersonForm() {
               <FormItem>
                 <FormLabel>Направление</FormLabel>
                 <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Организатор" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="m@example.com">Влево</SelectItem>
-                      <SelectItem value="m@google.com">Вправо</SelectItem>
-                      <SelectItem value="m@support.com">Посередине</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  {occupationOther === false ? (
+                    <Select
+                      onValueChange={(value) => {
+                        if (value === "other") {
+                          setOccupationOther(true);
+                          return field.onChange(undefined);
+                        }
+                        field.onChange(value);
+                      }}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Организатор" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="m@supporrt.com">
+                          Посередине
+                        </SelectItem>
+                        <Separator />
+
+                        <SelectItem value="m@googlrrre.com">Вправо</SelectItem>
+                        <Separator />
+
+                        <SelectItem value="m@examplrre.com">Влево</SelectItem>
+                        <Separator />
+
+                        <SelectItem
+                          value="other"
+                          onClick={() => setOccupationOther(true)}
+                        >
+                          Другое
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Input
+                      required
+                      showInputLength
+                      placeholder="Другое"
+                      disabled={isLoading}
+                      {...field}
+                      maxLength={20}
+                    />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -150,9 +184,12 @@ export default function ClientPersonForm() {
                       <SelectItem value="m@example.com">
                         Оптическое лицо
                       </SelectItem>
+                      <Separator />
                       <SelectItem value="m@google.com">
                         Политическое лицо
                       </SelectItem>
+                      <Separator />
+
                       <SelectItem value="m@support.com">
                         Фигуральное выражение
                       </SelectItem>

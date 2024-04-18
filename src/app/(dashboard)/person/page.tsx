@@ -40,6 +40,11 @@ export default function page() {
                   src="https://github.com/shadcn.png"
                   alt="@shadcn"
                 />
+                <div className="absolute h-12 flex justify-center items-center w-full backdrop-blur-md">
+                  <span className="text-primary-foreground text-sm font-light">
+                    Изменить
+                  </span>
+                </div>
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <PersonBackgroundRight className="hidden sm:block" />
