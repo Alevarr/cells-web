@@ -451,14 +451,18 @@ export default function ClientPersonForm() {
                 className="rounded-r-none"
                 containerClassName="grow"
               />
-              <Button variant="outline" className="h-auto rounded-l-none">
+              <Button
+                variant="outline-minimal"
+                className="h-auto rounded-l-none"
+                type="button"
+              >
                 <Check />
               </Button>
             </div>
           </FormItem>
           <FormItem className="space-y-4">
             <div>
-              <FormLabel>Теговые слова </FormLabel>
+              <FormLabel>Теговые слова</FormLabel>
               <FormDescription className="text-xs text-muted-foreground">
                 (максимальное количество тегов - 10)
               </FormDescription>
@@ -485,17 +489,26 @@ export default function ClientPersonForm() {
                 className="rounded-r-none"
                 containerClassName="grow"
               />
-              <Button variant="outline" className="h-auto rounded-l-none">
+              <Button
+                variant="outline-minimal"
+                className="h-auto rounded-l-none"
+                type="button"
+              >
                 <Check />
               </Button>
             </div>
           </FormItem>
+          <div className="flex flex-row justify-between items-center mt-11">
+            <Button disabled={isLoading} variant="outline" type="button">
+              {/* {isLoading && <RotateCw className="mr-2 h-4 w-4 animate-spin" />} */}
+              Удалить профиль
+            </Button>
+            <Button disabled={isLoading} variant="secondary" type="submit">
+              {/* {isLoading && <RotateCw className="mr-2 h-4 w-4 animate-spin" />} */}
+              Сохранить
+            </Button>
+          </div>
         </div>
-
-        <Button disabled={isLoading} className="ml-auto w-full" type="submit">
-          {/* {isLoading && <RotateCw className="mr-2 h-4 w-4 animate-spin" />} */}
-          Сохранить
-        </Button>
       </form>
     </Form>
   );
