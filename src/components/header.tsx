@@ -4,6 +4,7 @@ import Link from "next/link";
 import { APP_ROUTES } from "@/constant/app-routes.constant";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import VKAuthButton from "./vk-auth-button/vk-auth-button";
+import UserOrLogin from "./user-or-login";
 
 export default function Header() {
   return (
@@ -21,11 +22,8 @@ export default function Header() {
           <span>Главная</span>
         </Link>
       </div>
-      {/* <Avatar className="w-6 h-6 sm:w-9 sm:h-9">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar> */}
-      <VKAuthButton />
+
+      <UserOrLogin />
     </nav>
   );
 }

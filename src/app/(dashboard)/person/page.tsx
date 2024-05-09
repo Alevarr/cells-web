@@ -1,3 +1,4 @@
+import ChangeAvatarForm from "@/components/forms/change-avatar-form";
 import ClientPersonForm from "@/components/forms/client-person-form";
 import PersonBackgroundLeft from "@/components/icons/person-background-left";
 import PersonBackgroundMobileLeft from "@/components/icons/person-background-mobile-left";
@@ -35,18 +36,7 @@ export default function page() {
             <div className="flex flex-row justify-between w-full">
               <PersonBackgroundLeft className="hidden sm:block" />
               <PersonBackgroundMobileLeft className="sm:hidden" />
-              <Avatar className="w-32 h-32 sm:w-64 sm:h-64 shadow-avatar">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
-                <div className="absolute h-12 flex justify-center items-center w-full backdrop-blur-md bottom-0">
-                  <span className="text-primary-foreground text-sm font-light">
-                    Изменить
-                  </span>
-                </div>
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <ChangeAvatarForm />
               <PersonBackgroundRight className="hidden sm:block" />
               <PersonBackgroundMobileRight className="sm:hidden" />
             </div>

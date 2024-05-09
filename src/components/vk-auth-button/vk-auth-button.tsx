@@ -1,5 +1,4 @@
 "use client";
-import VKID from "@/config/vkid.config";
 import "./vk-auth-button.css";
 
 export default function VKAuthButton() {
@@ -7,7 +6,38 @@ export default function VKAuthButton() {
     <button
       id="VKIDSDKAuthButton"
       className="VkIdWebSdk__button VkIdWebSdk__button_reset"
-      onClick={() => VKID.Auth.login()}
+      onClick={() =>
+        VK.Auth.login(async (response: any) => {
+          if (response.session) {
+            let session = {
+              expire: response.session.expire,
+              mid: response.session.mid,
+              secret: response.session.secret,
+              sid: response.session.sid,
+              sig: response.session.sig,
+            };
+            try {
+              let response = await fetch("/api/auth/vk/front_auth", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(session),
+              });
+              // console.log(response);
+              // VK.Api.call(
+              //   "photos.getAll",
+              //   { owner_id: session.mid, v: "5.81" },
+              //   (a: any) => console.log(a.response)
+              // );
+            } catch (error) {
+              console.log(error);
+            }
+          } else {
+            console.log("Fail");
+          }
+        }, 4)
+      }
     >
       <div className="VkIdWebSdk__button_container">
         <div className="VkIdWebSdk__button_icon">

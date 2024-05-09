@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 80",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 80",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -19,14 +19,15 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@react-input/mask": "^1.1.1",
-    "@vkid/sdk": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.368.0",
     "next": "14.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-drag-drop-files": "^2.3.10",
     "react-hook-form": "^7.51.3",
+    "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Unbounded as FontSans } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["cyrillic"],
@@ -19,7 +21,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={fontSans.className}>{children}</body>
+      <head>
+        <Script
+          src="https://vk.com/js/api/openapi.js?169"
+          type="text/javascript"
+          strategy="beforeInteractive"
+        ></Script>
+      </head>
+      <body className={fontSans.className}>
+        {children}
+        <Toaster />
+        <Script id="vk-init" type="text/javascript">
+          {`
+            VK.init({
+              apiId: 51790924
+            });
+          `}
+        </Script>
+      </body>
     </html>
   );
 }
