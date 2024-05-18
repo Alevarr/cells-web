@@ -19,7 +19,6 @@ export default function VKAuthButton() {
               sid: response.session.sid,
               sig: response.session.sig,
             };
-            console.log(session.expire);
             try {
               let response = await fetch("/api/auth/vk/front_auth", {
                 method: "POST",
@@ -36,8 +35,9 @@ export default function VKAuthButton() {
               //   { owner_id: session.mid, v: "5.81" },
               //   (a: any) => console.log(a.response)
               // );
-            } catch (error) {
+            } catch (error: any) {
               console.log(error);
+              toast.error(error);
               toast.error("Ошибка авторизации.");
             }
           } else {
