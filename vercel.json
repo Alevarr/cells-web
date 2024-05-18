@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "https://owa.creativehouse.ru/$1"
-    }
-  ]
-}
