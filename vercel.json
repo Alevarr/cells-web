@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Forwarded-Host",
+          "value": "owa.creativhouse.ru"
+        },
+        {
+          "key": "Origin",
+          "value": "owa.creativhouse.ru"
+        }
+      ]
+    }
+  ]
+}
