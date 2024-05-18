@@ -5,9 +5,11 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export async function setSession(session: VKSession) {
+  console.log(session);
   cookies().set("session", JSON.stringify(session), {
     expires: session.expire * 1000,
   });
+  console.log(cookies().get("session"));
   revalidatePath("/", "layout");
 }
 
