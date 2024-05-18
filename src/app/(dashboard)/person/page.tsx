@@ -1,3 +1,4 @@
+import { getSession } from "@/actions/auth.action.";
 import ChangeAvatarForm from "@/components/forms/change-avatar-form";
 import ClientPersonForm from "@/components/forms/client-person-form";
 import PersonBackgroundLeft from "@/components/icons/person-background-left";
@@ -9,7 +10,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function page() {
+export default async function Page() {
+  const session = await getSession();
   return (
     <Tabs defaultValue="client" className="">
       <TabsList className="flex flex-row w-full h-auto justify-between bg-transparent text-primary mb-12 gap-6">
@@ -36,7 +38,7 @@ export default function page() {
             <div className="flex flex-row justify-between w-full">
               <PersonBackgroundLeft className="hidden sm:block" />
               <PersonBackgroundMobileLeft className="sm:hidden" />
-              <ChangeAvatarForm />
+              <ChangeAvatarForm session={session} />
               <PersonBackgroundRight className="hidden sm:block" />
               <PersonBackgroundMobileRight className="sm:hidden" />
             </div>

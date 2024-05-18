@@ -1,11 +1,17 @@
+import { getSession } from "@/actions/auth.action.";
 import Header from "@/components/header";
 import Image from "next/image";
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default async function layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await getSession();
   return (
     <>
       <div className="w-full max-w-screen-xl flex flex-col items-stretch px-6 mx-auto pb-24">
-        <Header />
+        <Header isUserAuthenticated={!!session} />
         {children}
       </div>
       <div className="relative">

@@ -1,16 +1,20 @@
 "use client";
 import { toast } from "sonner";
-import useSession from "../hooks/use-session";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { FileUploader } from "react-drag-drop-files";
 import {
   VKCreateAlbumResponse,
   VKGetAlbumsResponse,
   VKGetUploadServerReponse,
+  VKSession,
 } from "@/types";
 
-export default function ChangeAvatarForm() {
-  const session = useSession();
+export default function ChangeAvatarForm({
+  session,
+}: {
+  session: VKSession | null;
+}) {
+  // console.log(session);
   return (
     <Avatar className="w-32 h-32 sm:w-64 sm:h-64 shadow-avatar">
       <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -23,6 +27,7 @@ export default function ChangeAvatarForm() {
             }
             const formData = new FormData();
             formData.append("file1", file);
+            console.log(session);
             VK.Api.call(
               "photos.getAlbums",
               { owner_id: session?.mid, v: "5.81" },
@@ -46,6 +51,7 @@ export default function ChangeAvatarForm() {
                       v: "5.81",
                     },
                     async (r: VKGetUploadServerReponse) => {
+                      console.log(r);
                       const response = r.response;
                       if (!response) {
                         toast.error("Ошибка при загрузке файла.");
@@ -68,6 +74,7 @@ export default function ChangeAvatarForm() {
                     v: "5.81",
                   },
                   (r: VKCreateAlbumResponse) => {
+                    console.log(r);
                     const createdAlbumId = r.response?.id;
                     if (!createdAlbumId) {
                       toast.error("Ошибка при создании альбома.");

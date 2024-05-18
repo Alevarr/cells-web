@@ -1,5 +1,7 @@
 "use client";
+import { toast } from "sonner";
 import "./vk-auth-button.css";
+import { setSession } from "@/actions/auth.action.";
 
 export default function VKAuthButton() {
   return (
@@ -16,6 +18,7 @@ export default function VKAuthButton() {
               sid: response.session.sid,
               sig: response.session.sig,
             };
+            console.log(session.expire);
             try {
               let response = await fetch("/api/auth/vk/front_auth", {
                 method: "POST",
@@ -24,6 +27,8 @@ export default function VKAuthButton() {
                 },
                 body: JSON.stringify(session),
               });
+              // if (!response.ok) return toast.error("Ошибка авторизации.");
+              await setSession(session);
               // console.log(response);
               // VK.Api.call(
               //   "photos.getAll",
@@ -32,9 +37,10 @@ export default function VKAuthButton() {
               // );
             } catch (error) {
               console.log(error);
+              toast.error("Ошибка авторизации.");
             }
           } else {
-            console.log("Fail");
+            toast.error("Ошибка авторизации.");
           }
         }, 4)
       }
