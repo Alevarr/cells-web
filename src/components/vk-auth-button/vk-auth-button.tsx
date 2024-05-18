@@ -10,6 +10,7 @@ export default function VKAuthButton() {
       className="VkIdWebSdk__button VkIdWebSdk__button_reset"
       onClick={() =>
         VK.Auth.login(async (response: any) => {
+          console.log(response);
           if (response.session) {
             let session = {
               expire: response.session.expire,
@@ -27,7 +28,7 @@ export default function VKAuthButton() {
                 },
                 body: JSON.stringify(session),
               });
-              // if (!response.ok) return toast.error("Ошибка авторизации.");
+              if (!response.ok) return toast.error("Ошибка авторизации.");
               await setSession(session);
               // console.log(response);
               // VK.Api.call(
