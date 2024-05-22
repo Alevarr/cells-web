@@ -20,14 +20,14 @@ export default function VKAuthButton() {
               sig: response.session.sig,
             };
             try {
-              let response = await fetch("/api/auth/vk/front_auth", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(session),
-              });
-              if (!response.ok) return toast.error("Ошибка авторизации.");
+              // let response = await fetch("/api/auth/vk/front_auth", {
+              //   method: "POST",
+              //   headers: {
+              //     "Content-Type": "application/json",
+              //   },
+              //   body: JSON.stringify(session),
+              // });
+              // if (!response.ok) return toast.error("Ошибка авторизации.");
               await setSession(session);
               // console.log(response);
               // VK.Api.call(
